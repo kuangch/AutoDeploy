@@ -11,11 +11,17 @@ app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x
 
 
 app.post('/webhook', function(req,res){
-    console.log('print', req.body);
-    console.info(req.body["token"]);
-    if('kuang' === req.body['token'] ){
 
-        console.info(process);
+    var action =  req.headers['X-Coding-Event'];
+    var body =  req.body;
+    var token =  req.body.token;
+
+    console.log('action:',action);
+    console.log('body: ',body);
+    console.log('token: ',token);
+
+    if(action.toLowerCase() === 'push' && 'kuang' === body['token'] ){
+
         process.exec('/var/kuangch/auto_deploy.sh',
             function (error, stdout, stderr) {
                 console.log('stdout========================\n' + stdout);
@@ -27,7 +33,7 @@ app.post('/webhook', function(req,res){
                 }
             });
     } else {
-        console.log(' failed token ')
+        console.log(' failed token ');
         res.send('<pre>token不正确?</pre>');
     }
 });
