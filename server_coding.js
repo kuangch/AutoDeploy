@@ -14,13 +14,13 @@ app.post('/webhook', function(req,res){
 
     var action =  req.headers['X-Coding-Event'];
     var body =  req.body;
-    var token =  req.body.token;
+    var token =  req.body['token'];
 
     console.log('action:',action);
     console.log('body: ',body);
     console.log('token: ',token);
 
-    if(action.toLowerCase() === 'push' && 'kuang' === body['token'] ){
+    if(!!action && action.toLowerCase() === 'push' && 'kuang' === token ){
 
         process.exec('/var/kuangch/auto_deploy.sh',
             function (error, stdout, stderr) {
@@ -32,9 +32,12 @@ app.post('/webhook', function(req,res){
                     res.send('<pre>done!!!\n' + stdout + '</pre>');
                 }
             });
-    } else {
+    } else if(token !== 'kuang'){
         console.log(' failed token ');
         res.send('<pre>token不正确?</pre>');
+    }else{
+        console.log(' 不是 push 操作 ');
+        res.send('<pre>不是 push 操作？</pre>');
     }
 });
 
