@@ -2,14 +2,12 @@
  * Created by Thinkpad on 2016/5/27.
  */
 var express = require('express');
-var multer = require('multer');
 var process = require('child_process');
 var bodyParser = require('body-parser');
 var app = express();
 
 app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
-app.use(multer()); // for parsing multipart/form-data
 
 
 app.post('/webhook', function(req,res){
