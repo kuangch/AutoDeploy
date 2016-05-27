@@ -12,7 +12,8 @@ app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x
 
 app.post('/webhook', function(req,res){
 
-    var action =  req.headers['X-Coding-Event'];
+    console.log('header:',req.headers);
+    var action =  req.headers['x-coding-event'];
     var body =  req.body;
     var token =  req.body['token'];
 
