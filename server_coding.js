@@ -12,14 +12,11 @@ app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x
 
 app.post('/webhook', function(req,res){
 
-    console.log('header:',req.headers);
+    console.log('request header:',req.headers);
     var action =  req.headers['x-coding-event'];
-    var body =  req.body;
     var token =  req.body['token'];
 
-    console.log('action:',action);
-    console.log('body: ',body);
-    console.log('token: ',token);
+    console.log('request action: %s, token: %s',action,token);
 
     if(!!action && action.toLowerCase() === 'push' && 'kuang' === token ){
 
