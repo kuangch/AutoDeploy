@@ -9,6 +9,7 @@ var app = express();
 app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({extended: true})); // for parsing application/x-www-form-urlencoded
 
+var isChmod = false;
 
 app.post('/webhook', function (req, res) {
 
@@ -22,15 +23,18 @@ app.post('/webhook', function (req, res) {
 
         var autoScript = __dirname + '/auto_deploy.sh';
 
-        console.error('chmod autoScript...');
-        process.exec('chmod a+x ' + autoScript,
-            function (error, stdout, stderr) {
-                if (error !== null) {
-                    res.send('<pre>chmod fail!!!\n' + stdout + error + '</pre>');
-                } else {
-                    console.error('chmod autoScript success');
-                }
-            });
+        if(isChmod) {
+            console.error('chmod autoScript...');
+            process.exec('chmod a+x ' + autoScript,
+                function (error, stdout, stderr) {
+                    if (error !== null) {
+                        res.send('<pre>chmod fail!!!\n' + stdout + error + '</pre>');
+                    } else {
+                        console.error('chmod autoScript success');
+                        isChmod = true;
+                    }
+                });
+        }
         process.exec(autoScript,
             function (error, stdout, stderr) {
                 if (error !== null) {
