@@ -30,18 +30,19 @@ app.post('/webhook', function (req, res) {
                     res.send('<pre>chmod fail!!!\n' + stdout + error + '</pre>');
                 } else {
                     res.send('<pre>chmod done!!!\n' + stdout + '</pre>');
+                    process.exec(autoScript,
+                        function (error, stdout, stderr) {
+                            console.log('stdout========================\n' + stdout);
+                            console.log('stderr========================\n' + stderr);
+                            if (error !== null) {
+                                res.send('<pre>fail!!!\n' + stdout + error + '</pre>');
+                            } else {
+                                res.send('<pre>done!!!\n' + stdout + '</pre>');
+                            }
+                        });
                 }
             });
-        process.exec(autoScript,
-            function (error, stdout, stderr) {
-                console.log('stdout========================\n' + stdout);
-                console.log('stderr========================\n' + stderr);
-                if (error !== null) {
-                    res.send('<pre>fail!!!\n' + stdout + error + '</pre>');
-                } else {
-                    res.send('<pre>done!!!\n' + stdout + '</pre>');
-                }
-            });
+
     } else if (token !== 'kuang') {
         console.log(' failed token ');
         res.send('<pre>token不正确?</pre>');
