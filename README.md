@@ -65,3 +65,5 @@ $ node server_coding.js
 - 在github（本项目使用的是coding）的项目的setting->webhook下配置push merge 等事件的post请求url（如：`http://techkuang.top:7777`）,tokent任意填写但要和AutoDeploy服务中的token校验对应上（如：kuang）
 
 > 一切ok，这样下次在往coding的person_mainpage.git仓库push代码的时候，coding将会自动发送一个url为`http://techkuang.top:777`的post请求，在服务端器主机上运行着AutoDeploy服务收到并处理请求，获取请求头信息（里面包含时间信息如：push，merge）判断如果是push时间将自行auto_deploy.sh脚本实现自动部署
+
+![image](https://github.com/kuangch/AutoDeploy/blob/master/auto_deploy.jpg)
