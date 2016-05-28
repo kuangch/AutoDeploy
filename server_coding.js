@@ -27,8 +27,6 @@ app.post('/webhook', function (req, res) {
             console.error('chmod autoScript...');
             process.exec('chmod a+x ' + autoScript,
                 function (error, stdout, stderr) {
-                    console.log('chmod script stdout ========================\n' + stdout);
-                    console.log('chmod script stderr ========================\n' + stderr);
                     if (error !== null) {
                         res.send('<pre>chmod fail!!!\n' + stdout + error + '</pre>');
                         return;
