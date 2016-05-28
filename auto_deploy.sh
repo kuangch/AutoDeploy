@@ -1,9 +1,9 @@
 #!/bin/bash
 
 # change directory according your physical truth
-deployPath = "/data/techkuang.top"
-gitDir = "/var/kuangch/git-data/person_mainpage"
-repoDir = "/var/kuangch/git-data/person_mainpage/.git"
+deployPath="/data/techkuang.top"
+gitDir="/var/kuangch/git-data/person_mainpage"
+repoDir="/var/kuangch/git-data/person_mainpage/.git"
 
 echo -e "\033[32m [AUTO SYNC] sync demo start \033[0m"
 cd $gitDir

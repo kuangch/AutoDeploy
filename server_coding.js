@@ -12,7 +12,7 @@ app.use(bodyParser.urlencoded({extended: true})); // for parsing application/x-w
 
 app.post('/webhook', function (req, res) {
 
-    console.log('request header:', req.headers);
+    console.error('++++++++++++++++++++++++++++++++');
     var action = req.headers['x-coding-event'];
     var token = req.body['token'];
 
@@ -22,18 +22,16 @@ app.post('/webhook', function (req, res) {
 
         var autoScript = __dirname + '/auto_deploy.sh';
 
+        console.error('chmod autoScript...');
         process.exec('chmod a+x ' + autoScript,
             function (error, stdout, stderr) {
-                console.log('stdout========================\n' + stdout);
-                console.log('stderr========================\n' + stderr);
                 if (error !== null) {
                     res.send('<pre>chmod fail!!!\n' + stdout + error + '</pre>');
                 } else {
+                    console.error('chmod autoScript success');
                     res.send('<pre>chmod done!!!\n' + stdout + '</pre>');
                     process.exec(autoScript,
                         function (error, stdout, stderr) {
-                            console.log('stdout========================\n' + stdout);
-                            console.log('stderr========================\n' + stderr);
                             if (error !== null) {
                                 res.send('<pre>fail!!!\n' + stdout + error + '</pre>');
                             } else {
