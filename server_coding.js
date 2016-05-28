@@ -29,7 +29,6 @@ app.post('/webhook', function (req, res) {
                     res.send('<pre>chmod fail!!!\n' + stdout + error + '</pre>');
                 } else {
                     console.error('chmod autoScript success');
-                    res.send('<pre>chmod done!!!\n' + stdout + '</pre>');
                     process.exec(autoScript,
                         function (error, stdout, stderr) {
                             if (error !== null) {
