@@ -23,7 +23,7 @@ app.post('/webhook', function (req, res) {
 
         var autoScript = __dirname + '/auto_deploy.sh';
 
-        if(isChmod) {
+        if(!isChmod) {
             console.error('chmod autoScript...');
             process.exec('chmod a+x ' + autoScript,
                 function (error, stdout, stderr) {
@@ -35,6 +35,8 @@ app.post('/webhook', function (req, res) {
                     }
                 });
         }
+
+        console.error('exec autoScript...');
         process.exec(autoScript,
             function (error, stdout, stderr) {
                 if (error !== null) {
