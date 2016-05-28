@@ -29,14 +29,14 @@ app.post('/webhook', function (req, res) {
                     res.send('<pre>chmod fail!!!\n' + stdout + error + '</pre>');
                 } else {
                     console.error('chmod autoScript success');
-                    process.exec(autoScript,
-                        function (error, stdout, stderr) {
-                            if (error !== null) {
-                                res.send('<pre>fail!!!\n' + stdout + error + '</pre>');
-                            } else {
-                                res.send('<pre>done!!!\n' + stdout + '</pre>');
-                            }
-                        });
+                }
+            });
+        process.exec(autoScript,
+            function (error, stdout, stderr) {
+                if (error !== null) {
+                    res.send('<pre>fail!!!\n' + stdout + error + '</pre>');
+                } else {
+                    res.send('<pre>done!!!\n' + stdout + '</pre>');
                 }
             });
 
