@@ -39,7 +39,9 @@ app.post('/webhook', function (req, res) {
     let action = req.headers['x-gitlab-event'];
     let token = req.headers['x-gitlab-token'];
 
-    console.log('HOOK: action: %s, token: %s', action, token);
+    let projectName = req.body.project.name;
+
+    console.log(`HOOK: project: ${projectName}，action: ${action}, token: ${token}`);
 
     if (!!action && action.toLowerCase() === 'push hook') {
 
