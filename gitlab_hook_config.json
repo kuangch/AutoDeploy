@@ -1,0 +1,12 @@
+{
+  "configs":[
+    {
+      "token": "mock_server",
+      "script": "/opt/repos/MockServer/auto_deploy.sh"
+    },
+    {
+      "token": "mock_server2",
+      "script": "/opt/repos/MockServer2"
+    }
+  ]
+}

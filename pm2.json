@@ -1,0 +1,22 @@
+/* ========================================
+ *  company : Dilusense
+ *   author : Kuangch
+ *     date : 2018/11/22
+ * ======================================== */
+
+{
+    "apps": [{
+    "name": "AutoDeployServer",
+    "script": "index.js",
+    "cwd": "/opt/tools/AutoDeploy",
+    "exec_mode": "fork",
+    "instances": 1,
+    "max_memory_restart": "100M",
+    "autorestart": true,
+    "node_args": [],
+    "args": [],
+    "env": {
+
+    }
+}]
+}
